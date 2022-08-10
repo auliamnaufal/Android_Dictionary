@@ -3,6 +3,7 @@ package com.auliamnaufal.dictionariesapi
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
@@ -46,6 +47,9 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         Toast.makeText(this@MainActivity, "Search Something else", Toast.LENGTH_SHORT).show()
                     }
+
+                    val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                    inputMethodManager.hideSoftInputFromWindow(binding.root.windowToken, 0)
                 }
                 return true
             }
