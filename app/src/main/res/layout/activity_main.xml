@@ -45,17 +45,6 @@
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <TextView
-        android:id="@+id/tv_definition"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="buːk"
-        android:textSize="24sp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_phonetics" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_definition"
         android:layout_width="match_parent"

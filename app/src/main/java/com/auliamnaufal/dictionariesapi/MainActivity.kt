@@ -2,12 +2,14 @@ package com.auliamnaufal.dictionariesapi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.transition.Visibility
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.auliamnaufal.dictionariesapi.data.DictionaryResponseItem
 import com.auliamnaufal.dictionariesapi.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -33,17 +35,8 @@ class MainActivity : AppCompatActivity() {
                 viewModel?.getApiSearch(query)
                 viewModel?.data?.observe(this@MainActivity) {
                     if (it != null) {
-                        binding.apply {
-                            tvWordName.text = it.get(0).word
-                            tvPhonetics.text = it.get(0).phonetic
+                        setupView(it)
 
-                            rvDefinition.apply {
-                                Log.i("MainActivity", "onQueryTextSubmit: ${it.get(0).meanings?.get(0)?.definitions}")
-                                mAdapter.setData(it.get(0).meanings?.get(0)?.definitions)
-                                adapter = mAdapter
-                                layoutManager = LinearLayoutManager(this@MainActivity)
-                            }
-                        }
                     } else {
                         Toast.makeText(this@MainActivity, "Search Something else", Toast.LENGTH_SHORT).show()
                     }
@@ -59,5 +52,18 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    private fun setupView(data: List<DictionaryResponseItem>) {
+        binding.apply {
+            tvWordName.text = data.get(0).word
+            tvPhonetics.text = data.get(0).phonetic
+
+            rvDefinition.apply {
+                mAdapter.setData(data.get(0).meanings?.get(0)?.definitions)
+                adapter = mAdapter
+                layoutManager = LinearLayoutManager(this@MainActivity)
+            }
+        }
     }
 }
