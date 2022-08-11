@@ -7,14 +7,6 @@
     tools:context=".MainActivity"
     android:padding="10dp">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-
-    </ScrollView>
-
     <androidx.appcompat.widget.SearchView
         android:id="@+id/sv_search"
         android:layout_width="match_parent"
@@ -45,12 +37,23 @@
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Definitions"
+        app:layout_constraintTop_toBottomOf="@id/tv_phonetics"
+        android:textSize="28sp"
+        android:id="@+id/tv_definition"
+        android:textStyle="bold"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_definition"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_phonetics"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_definition"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/row_item_word"
         app:layout_constraintStart_toStartOf="parent"/>

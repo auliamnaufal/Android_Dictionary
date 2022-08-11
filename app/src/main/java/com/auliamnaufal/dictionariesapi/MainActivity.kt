@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.transition.Visibility
 import android.util.Log
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
@@ -30,11 +31,14 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
+        binding.tvDefinition.visibility = View.INVISIBLE
+
         binding.svSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 viewModel?.getApiSearch(query)
                 viewModel?.data?.observe(this@MainActivity) {
                     if (it != null) {
+                        binding.tvDefinition.visibility = View.VISIBLE
                         setupView(it)
 
                     } else {
